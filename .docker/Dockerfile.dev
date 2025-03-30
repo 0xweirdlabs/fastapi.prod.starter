@@ -1,0 +1,17 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install UV
+RUN pip install uv
+
+# Copy project definition
+COPY pyproject.toml .
+
+# Install dependencies with UV
+RUN uv pip install -e .
+
+# Install dev dependencies
+RUN uv pip install -e ".[dev]"
+
+# The code will be mounted as a volume

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile.dev
+    ports:
+      - "8000:8000"
+      - "9090:9090"  # Expose metrics in dev
+    volumes:
+      - ../:/app  # Mount code for hot reloading
+    env_file:
+      - ../.env.dev
+    command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ../.env.dev
+    ports:
+      - "5432:5432"
+  
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"  # Map to different host port to avoid collision
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
