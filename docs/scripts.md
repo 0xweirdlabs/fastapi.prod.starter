@@ -18,20 +18,23 @@ python -m venv .venv
 # On macOS/Linux
 source .venv/bin/activate
 
+# Install dependencies manually
+pip install -e .
+
 # Now run scripts within this activated environment
 ```
 
-All scripts assume you are running them from an activated virtual environment.
+All scripts assume you are running them from an activated virtual environment with the required dependencies installed.
 
 ### Starting the Server
 
 ```bash
-# Start the application with dependency checking and hot-reload
+# Start the application with hot-reload
 python scripts/run.py
 ```
 
 This script:
-- Installs required dependencies in your current environment if they're missing
+- Loads environment variables from `.env.local`
 - Starts the FastAPI server with auto-reload enabled
 - Sets up signal handling for graceful shutdown
 
@@ -50,16 +53,7 @@ This script:
 
 ## Environment Scripts
 
-### Local Development
-
-```bash
-# Start local development without Docker
-python scripts/local.py
-```
-
-This script loads environment variables from `.env.local` and starts the server.
-
-### Development Environment
+### Development Environment with Docker
 
 ```bash
 # Start development environment with Docker
@@ -68,7 +62,7 @@ python scripts/dev.py
 
 This script starts the development stack using Docker Compose.
 
-### Production Environment
+### Production Environment with Docker
 
 ```bash
 # Start production environment with Docker
@@ -96,4 +90,15 @@ This script runs tests using pytest and generates a coverage report.
 python scripts/migrate_to_supabase.py
 ```
 
-This script migrates user accounts and data from the local SQLite database to Supabase.
+This script migrates data from the local SQLite database to Supabase.
+
+## Script Usage Summary
+
+| Script | Purpose | Command |
+|--------|---------|---------|
+| `run.py` | Start the application | `python scripts/run.py` |
+| `kill.py` | Stop the application | `python scripts/kill.py` |
+| `dev.py` | Start Docker development environment | `python scripts/dev.py` |
+| `prod.py` | Start Docker production environment | `python scripts/prod.py` |
+| `test.py` | Run tests | `python scripts/test.py` |
+| `migrate_to_supabase.py` | Migrate data to Supabase | `python scripts/migrate_to_supabase.py` |

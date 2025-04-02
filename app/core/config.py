@@ -28,7 +28,10 @@ class Settings(BaseSettings):
     
     # OAuth settings
     OAUTH_REDIRECT_URL: str = "http://localhost:8000/api/v1/auth/callback"
-    FRONTEND_URL: str = "http://localhost:3000"
+    FRONTEND_URL: str = "http://localhost:5000"
+    
+    # CORS settings
+    CORS_ORIGINS: str = "http://localhost:5000,http://localhost:3000"
 
     class Config:
         env_file = ".env"
