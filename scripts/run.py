@@ -8,6 +8,9 @@ import os
 import sys
 import atexit
 
+# Updated import paths to reflect the new src structure
+from src import app
+
 def load_env_file():
     """Load environment variables from .env.local if it exists"""
     env_file = '.env.local'
@@ -53,4 +56,4 @@ if __name__ == "__main__":
     print("Or run 'python scripts/kill.py' from another terminal to stop the server")
     
     # Start the application
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("src.app.main:app", host="0.0.0.0", port=8000, reload=True)

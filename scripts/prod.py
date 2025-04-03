@@ -2,6 +2,7 @@
 Production environment script for FastAPI application.
 Run with: uv run scripts/prod.py
 """
+# Updated import paths to reflect the new src structure
 import subprocess
 
 def main():

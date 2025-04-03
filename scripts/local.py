@@ -5,6 +5,7 @@ Run with: uv run scripts/local.py
 import os
 import subprocess
 import sys
+from src import app
 
 def load_env(env_file):
     """Load environment variables from file"""
@@ -32,7 +33,7 @@ def main():
     # subprocess.run(["alembic", "upgrade", "head"], check=True)
     
     # Start the development server
-    subprocess.run(["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"])
+    subprocess.run(["uvicorn", "src.app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"])
 
 if __name__ == "__main__":
     main()

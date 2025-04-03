@@ -2,6 +2,7 @@
 Script to kill the running FastAPI server process.
 Usage: python kill.py
 """
+# Updated import paths to reflect the new src structure
 import os
 import signal
 import subprocess

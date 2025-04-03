@@ -5,6 +5,9 @@ Run with: uv run scripts/test.py [args]
 import subprocess
 import sys
 
+# Updated import paths to reflect the new src structure
+import uv
+
 def main():
     """Run tests with UV"""
     # Install test dependencies
@@ -15,7 +18,7 @@ def main():
     
     # Add coverage by default if no specific tests are specified
     if len(sys.argv) <= 1:
-        cmd.extend(["--cov=app", "--cov-report=term-missing"])
+        cmd.extend(["--cov=src/app", "--cov-report=term-missing"])
     else:
         # Add any arguments passed to the script
         cmd.extend(sys.argv[1:])

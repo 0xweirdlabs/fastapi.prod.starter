@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+prometheus_client
+pydantic_settings
+supabase
+sqlalchemy>=2.0.0
+alembic>=1.12.0
